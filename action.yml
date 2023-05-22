@@ -1,11 +1,11 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Kross post social media'
+description: 'Cross posting the blog to various social media source after the user pushes it to the repo.'
+author: 'Karthikeyan'
 inputs:
-  milliseconds: # change this
+  twitter_api_key: # change this
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'API Key required to post on twitter'
+    default: ''
 runs:
   using: 'node16'
   main: 'dist/index.js'
