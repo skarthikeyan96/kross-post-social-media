@@ -1,9 +1,6 @@
 name: PR summary
 on:
-  pull_request:
-    types:
-      - "opened"
-      - "edited"
+  pull_request
 
 jobs:
   build:
