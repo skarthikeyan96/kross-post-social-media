@@ -2,12 +2,16 @@ import * as core from '@actions/core'
 import {Octokit} from '@octokit/core'
 import * as github from '@actions/github'
 import frontmatter from 'front-matter'
-import http from 'http'
+import https from 'https'
 
 async function getFileContents(blogContent: any) {
-  const content = await http.get(blogContent.raw_url)
-  console.log(content)
-  return ''
+  // @ts-ignore
+  https.get(blogContent.raw_url, function(error: any, response: { statusCode: number }, body: any):void{
+    if(!error && response.statusCode === 200){
+      console.log(body)
+    }
+  })
+  
 }
 async function run(): Promise<void> {
   try {
