@@ -3,7 +3,7 @@ description: 'Cross posting the blog to various social media source after the us
 author: 'Karthikeyan'
 inputs:
   TWITTER_API_KEY: # change this
-    required: true
+    required: false
     description: 'API Key required to post on twitter'
     default: ''
   GITHUB_TOKEN:
