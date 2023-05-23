@@ -2,7 +2,13 @@ import * as core from '@actions/core'
 import {Octokit} from '@octokit/core'
 import * as github from '@actions/github'
 import frontmatter from 'front-matter'
+import http from 'http'
 
+async function getFileContents(blogContent: any) {
+  const content = await http.get(blogContent.raw_url)
+  console.log(content)
+  return ''
+}
 async function run(): Promise<void> {
   try {
     // get the pull request details
@@ -47,7 +53,8 @@ async function run(): Promise<void> {
         const blogContent = data[index]
 
         // parse the markdown and get the front matter and the content
-        const content = frontmatter(blogContent.raw_url)
+
+        const content = getFileContents(blogContent)
 
         console.log(content)
       }
