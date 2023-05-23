@@ -14,7 +14,7 @@ async function run(): Promise<void> {
     const {repo, owner, number} = github.context.issue
     try {
       const response = await octokit.request(
-        'GET /repos/{owner}/{repo}/pulls/{pull_number}',
+        'GET /repos/{owner}/{repo}/pulls/{pull_number}/files',
         {
           owner,
           repo,
@@ -24,7 +24,7 @@ async function run(): Promise<void> {
           }
         }
       )
-
+  
       console.log(response)
     } catch (err) {
       if (err instanceof Error) core.setFailed(err.message)
