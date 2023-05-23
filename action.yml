@@ -2,10 +2,24 @@ name: 'Kross post social media'
 description: 'Cross posting the blog to various social media source after the user pushes it to the repo.'
 author: 'Karthikeyan'
 inputs:
-  twitter_api_key: # change this
+  PRIMARY_SOURCE:
+    required: false
+    description: "Primary platform where your blog you will be posted to"
+    default: "dev.to"
+  SECONDARY_SOURCES:
+    required: false
+    description: "Other platform where you want to publish your blog post. Separate the platform by commas."
+    default: ""
+  DEV_TO_API_KEY:
     required: true
+    description: 'API Key for posting the blog on dev.to'
+  TWITTER_API_KEY:
+    required: false
     description: 'API Key required to post on twitter'
     default: ''
+  GITHUB_TOKEN:
+    description: Github Token
+    required: true
 runs:
   using: 'node16'
   main: 'dist/index.js'
