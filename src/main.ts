@@ -1,11 +1,21 @@
 import * as core from '@actions/core'
 import {Octokit} from '@octokit/core'
 import * as github from '@actions/github'
+import frontmatter from 'front-matter'
 
 async function run(): Promise<void> {
   try {
     // get the pull request details
     const github_token = core.getInput('GITHUB_TOKEN')
+    // const primary_source: 'dev.to' | 'hashnode' | string =
+    //   core.getInput('PRIMARY_SOURCE') // defaults to dev.to
+    const forem_api_key = core.getInput('DEV_TO_API_KEY')
+    // const hashnode_api_key = core.getInput('HASHNODE_API_KEY')
+
+    if (!forem_api_key || forem_api_key.length === 0) {
+      core.setFailed('Please input the dev.to API key')
+      return
+    }
 
     const octokit = new Octokit({
       auth: github_token
@@ -31,7 +41,16 @@ async function run(): Promise<void> {
         return file.filename.match(/\.*(md|mdx)$/gim)
       })
 
-      console.log(data)
+      // loop over the files
+
+      for (let index = 0; index < data.length; index++) {
+        const blogContent = data[index]
+
+        // parse the markdown and get the front matter and the content
+        const content = frontmatter(blogContent.raw_url)
+
+        console.log(content)
+      }
     } catch (err) {
       if (err instanceof Error) core.setFailed(err.message)
     }

@@ -14,3 +14,6 @@ jobs:
     - uses: ./
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DEV_TO_API_KEY: ${{secrets.DEV_TO_API_KEY}}
+        PRIMARY_SOURCE: 'dev.to' # defaults to dev.to. It can be hashnode or medium
+        SECONDARY_SOURCES: '' # Eg: hashnode,medium. Do not include the primary source
