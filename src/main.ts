@@ -25,7 +25,13 @@ async function run(): Promise<void> {
         }
       )
 
-      console.log(response)
+      // get the mdx files and contents
+
+      const data = response.data.filter(file => {
+        return file.filename.match(/\.*(md|mdx)$/gim)
+      })
+
+      console.log(data)
     } catch (err) {
       if (err instanceof Error) core.setFailed(err.message)
     }

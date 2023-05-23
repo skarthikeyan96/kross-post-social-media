@@ -60,7 +60,11 @@ function run() {
                         'X-GitHub-Api-Version': '2022-11-28'
                     }
                 });
-                console.log(response);
+                // get the mdx files and contents
+                const data = response.data.filter((file) => {
+                    return file.filename.match(/\.*(md|mdx)$/gim);
+                });
+                console.log(data);
             }
             catch (err) {
                 if (err instanceof Error)
