@@ -24,7 +24,7 @@ async function run(): Promise<void> {
           }
         }
       )
-  
+
       console.log(response)
     } catch (err) {
       if (err instanceof Error) core.setFailed(err.message)

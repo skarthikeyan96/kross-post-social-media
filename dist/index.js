@@ -52,7 +52,7 @@ function run() {
             });
             const { repo, owner, number } = github.context.issue;
             try {
-                const response = yield octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}', {
+                const response = yield octokit.request('GET /repos/{owner}/{repo}/pulls/{pull_number}/files', {
                     owner,
                     repo,
                     pull_number: number,
@@ -66,7 +66,7 @@ function run() {
                 if (err instanceof Error)
                     core.setFailed(err.message);
             }
-            // get the markdown files 
+            // get the markdown files
             // based on the api key provided make the social media request
         }
         catch (error) {
