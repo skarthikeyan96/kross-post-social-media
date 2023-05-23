@@ -3,7 +3,7 @@ on:
   pull_request:
     types:
       - "opened"
-      - "updated"
+      - "edited"
 
 jobs:
   build:
